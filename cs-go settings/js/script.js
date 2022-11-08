@@ -37,6 +37,7 @@ let crosshair = {
     thickness: NaN,
     outline: NaN,
     outline_draw: NaN,
+    crosshair_t: NaN,
 };
 
 console.log(crosshair);
@@ -89,6 +90,10 @@ for (i in arr) {
     }
     else if (arr[i].indexOf('cl_crosshaircolor_g') !== -1) {
         crosshair.color_g = parseFloat(arr[i].replace(' cl_crosshaircolor_g ', ""));
+        console.log(arr[i]);
+    }
+    else if (arr[i].indexOf('cl_crosshair_t') !== -1) {
+        crosshair.crosshair_t = parseInt(arr[i].replace(' cl_crosshair_t ', ""));
         console.log(arr[i]);
     }
     else if (arr[i].indexOf('cl_crosshaircolor') !== -1) {
@@ -384,7 +389,10 @@ ctx.fillStyle = crosshair.color[crosshair.color2];
 createMarkRight(crosshair, center);
 createMarkBottom(crosshair, center);
 createMarkLeft(crosshair, center);
-createMarkTop(crosshair, center);
+if (crosshair.crosshair_t !== 1){
+    createMarkTop(crosshair, center);
+}
+
 if (crosshair.dot === 1) {
     createDot(crosshair, center);
 }
