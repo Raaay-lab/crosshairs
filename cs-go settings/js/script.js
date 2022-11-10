@@ -1,4 +1,5 @@
-let cross = document.getElementsByClassName("files-page-sight_settings_and_launch_options")[0].innerText;
+//let cross = document.getElementsByClassName("files-page-sight_settings_and_launch_options")[0].innerText;
+let cross = document.getElementById("input").value;
 let arr = cross.split(";");
 console.log(arr);
 
@@ -553,35 +554,108 @@ const decode = (code) => {
 
 let csgo_share_code  = document.getElementById('csgo-share-code');
 
-document.body.append(encode({
-    useAlpha: true,
-    alpha: 255,
-    color: 1,
-    r: 0,
-    g: 0,
-    b: 0,
-    size: 4,
-    style: 4,
-    gap: 0,
-    thickness: 1,
-    dot: false,
-    outline: false,
-    outlineThickness: 1,
-    t: false,
-    useWeaponValue: false
-}));
+function shareCodePrint(crosshair){
+    let useAlpha = true;
+    let alpha = 255;
+    let color = 1;
+    let r = 0;
+    let g = 0;
+    let b = 0;
+    let size = 4;
+    let style = 4;
+    let gap = 0;
+    let thickness = 1;
+    let dot = false;
+    let outline = false;
+    let outlineThickness = 1;
+    let t = false;
+    let useWeaponValue = false;
+    if (crosshair.alpha === 1){
+        useAlpha = true;
+    }else{
+        useAlpha = false;
+    }
+    if (crosshair.alpha !== NaN){
+        alpha = crosshair.alpha;
+    }
+    if (crosshair.color2 !== NaN){
+        color = crosshair.color2;
+    }
+    if (crosshair.color_r !== NaN){
+        r = crosshair.color_r;
+    }
+    if (crosshair.color_g !== NaN){
+        g = crosshair.color_g;
+    }
+    if (crosshair.color_b !== NaN){
+        b = crosshair.color_b;
+    }
+    if (crosshair.size !== NaN){
+        size = crosshair.size;
+    }
+    if (crosshair.style !== NaN){
+        style = crosshair.style;
+    }
+    if (crosshair.gap !== NaN){
+        gap = crosshair.gap;
+    }
+    if (crosshair.thickness !== NaN){
+        thickness = crosshair.thickness;
+    }
+    if (crosshair.dot === 1){
+        dot = true;
+    }else{
+        dot = false;
+    }
+    if (crosshair.outline_draw === 1){
+        outline = true;
+    }else{
+        outline = false;
+    }
+    if (crosshair.outline !== NaN){
+        outlineThickness = crosshair.outline;
+    }
+    if (crosshair.crosshair_t === 1){
+        t = true;
+    }else{
+        t = false;
+    }
+    return(encode({useAlpha, alpha, color, r, g, b, size, style, gap, thickness,
+    dot, outline, outlineThickness, t, useWeaponValue}))
+    // useWeaponValue
+}
 
-let csgo_code  = document.getElementById('csgo--code');
-let cr = decode('CSGO-qBD4P-q9uNy-xrYjf-QrW5O-BaBpF');
-document.body.append(cr.alpha);
-document.body.append(cr.color);
-document.body.append(cr.b);
-document.body.append(cr.dot);
-document.body.append(cr.g);
-document.body.append(cr.gap);
-document.body.append(cr.outline);
-document.body.append(cr.outlineThickness);
-document.body.append(cr.r);
-document.body.append(cr.size);
-document.body.append(cr.style);
-document.body.append(cr.t);
+document.body.append(shareCodePrint(crosshair))
+
+// document.body.append(encode({
+//     useAlpha: true,
+//     alpha: 255,
+//     color: 1,
+//     r: 0,
+//     g: 0,
+//     b: 0,
+//     size: 4,
+//     style: 4,
+//     gap: 0,
+//     thickness: 1,
+//     dot: false,
+//     outline: false,
+//     outlineThickness: 1,
+//     t: false,
+//     useWeaponValue: false
+// }));
+
+// let csgo_code  = document.getElementById('csgo--code');
+// let cr = decode('CSGO-qBD4P-q9uNy-xrYjf-QrW5O-BaBpF');
+// document.body.append(cr.alpha);
+// document.body.append(cr.color);
+// document.body.append(cr.b);
+// document.body.append(cr.dot);
+// document.body.append(cr.g);
+// document.body.append(cr.gap);
+// document.body.append(cr.outline);
+// document.body.append(cr.outlineThickness);
+// document.body.append(cr.r);
+// document.body.append(cr.size);
+// document.body.append(cr.style);
+// document.body.append(cr.t);
