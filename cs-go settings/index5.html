@@ -6,26 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/script2.js"></script>
+    <!-- <script src="js/parseConfigCode.js"></script>
+    <script src="js/parseShareCode.js"></script> -->
     <!-- <script type="module" src="js/BigInteger.min.js"></script> -->
     <title>Прицел для Тоши</title>
 </head>
 <body>
     <div class="files-page-sight_settings_and_launch_options">
-        <noindex>cl_crosshairalpha 255; cl_crosshaircolor 5; cl_crosshaircolor_r 50; cl_crosshaircolor_g 250; cl_crosshaircolor_b 50; cl_crosshairdot 0; cl_crosshairgap -3; cl_crosshairsize 3; cl_crosshairstyle 4; cl_crosshairusealpha 1; cl_crosshairthickness 1; cl_crosshair_sniper_width 1; cl_crosshair_outlinethickness 1; cl_crosshair_drawoutline 0;</noindex>
+        <noindex>cl_crosshairalpha 200; cl_crosshaircolor 1; cl_crosshairdot 1; cl_crosshairgap -2; cl_crosshairsize 1; cl_crosshairstyle 5; cl_crosshairusealpha 1; cl_crosshairthickness 1; cl_crosshair_sniper_width 1; cl_crosshair_outlinethickness 1; cl_crosshair_drawoutline 1; </noindex>
+    </div>
+    <div class="files-page-sight_settings_and_launch_options2">
+        <noindex>CSGO-at3tC-w6puH-VM7wr-c3wSu-5L5mA</noindex>
     </div>
     <div class="canvas">
         <canvas id="canvas" width="100" height="100"></canvas>
     </div>
-    <!-- <div id="csgo-share-code"></div>
-    <p></p>
-    <div id="csgo--code"></div> -->
-    <div> 
-        input cfg crosshair code here: 
-        <textarea type="text" id="input" onchange="test()"></textarea>
-    </div>
+    <script type="module"> 
+    import { parseCFGcode } from '../js/parseConfigCode.js';
+    import { parseShareCode } from '../js/parseShareCode.js';
+        let cfg = document.getElementsByClassName("files-page-sight_settings_and_launch_options")[0].innerText;
+        let share = document.getElementsByClassName("files-page-sight_settings_and_launch_options2")[0].innerText;
+        if (cfg !== ""){
+            parseCFGcode()
+        }else if (share !== ""){
+            parseShareCode()
+        }
+    </script>
     <div id="crosshairShareCode"></div>
-    <script src="js/script2.js"></script>
 
 </body>
 
