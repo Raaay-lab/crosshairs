@@ -7,22 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Прицел для Тоши</title>
 </head>
+
 <body>
-    <div class="files-page-sight_settings_and_launch_options">
-        <!-- <noindex>cl_crosshairalpha 255; cl_crosshaircolor 2; cl_crosshairdot 0; cl_crosshairgap -2; cl_crosshairsize 2.5; cl_crosshairstyle 4; cl_crosshairusealpha 1; cl_crosshairthickness 1.1; cl_crosshair_sniper_width 1; cl_crosshair_outlinethickness 1; cl_crosshair_drawoutline 0;</noindex> -->
+    <div class="files-page-sight_settings_and_launch_options" hidden>
+        <span>cl_crosshairalpha 255; cl_crosshaircolor 1; cl_crosshairdot 0; cl_crosshairgap -2; cl_crosshairsize 2.5;
+            cl_crosshairstyle 4; cl_crosshairusealpha 1; cl_crosshairthickness 1.1; cl_crosshair_sniper_width 1;
+            cl_crosshair_outlinethickness 1; cl_crosshair_drawoutline 0;</span>
     </div>
-    <div class="files-page-sight_settings_and_launch_options2">
-        <!-- <noindex>CSGO-CVSiS-H5249-BMc7Y-79HEq-J6sKG</noindex> -->
+    <div class="files-page-sight_settings_and_launch_options2" hidden>
+        <span>CSGO-CVSiS-H5249-BMc7Y-79HEq-J6sKG</span>
     </div>
     <div class="canvas">
     </div>
-    <script type="module"> 
-    import { parseCFGcode } from '../js/parseConfigCode.js';
-    import { parseShareCode } from '../js/parseShareCode.js';
+    <script type="module">
+        import { parseCFGcode } from '../js/parseConfigCode.js';
+        import { parseShareCode } from '../js/parseShareCode.js';
         let cfg = document.getElementsByClassName("files-page-sight_settings_and_launch_options")[0].innerText;
         let share = document.getElementsByClassName("files-page-sight_settings_and_launch_options2")[0].innerText;
         let cc = document.querySelector("div.canvas");
-        if(cfg !== "") {
+        if (cfg !== "") {
             cc.innerHTML = "<canvas id=\"canvas\" width=\"99\" height=\"99\"> </canvas>";
             parseCFGcode()
         }
