@@ -38,7 +38,7 @@ const decode = () => {
         const bytes = stringToByteArray(str);
         const crosshair = {
             alpha: 0,
-            useAlpha: false,
+            usealpha: false,
             useWeaponValue: false,
             color2: 0,
             color_b: 0,
@@ -73,7 +73,7 @@ const decode = () => {
         crosshair.thickness = bytes[12] / 10;
         const byte13 = dec2bin(bytes[13]).padStart(8, '0');
         crosshair.crosshair_t = parseInt(byte13.substring(0, 1), 2) === 1;
-        crosshair.useAlpha = parseInt(byte13.substring(1, 2), 2) === 1;
+        crosshair.usealpha = parseInt(byte13.substring(1, 2), 2) === 1;
         crosshair.useWeaponValue = parseInt(byte13.substring(2, 3), 2) === 1;
         crosshair.dot = parseInt(byte13.substring(3, 4), 2) === 1;
         crosshair.style = parseInt(byte13.substring(4, 7), 2);
@@ -90,7 +90,8 @@ const decode = () => {
 
 export function parseShareCode(){
     let crosshair = decode();
-    console.log(crosshair);
     drowCrosshair(crosshair);
-    console.log(crosshair);
+    let huy = document.getElementById("crosshairShareCode");
+    let share = document.getElementsByClassName("files-page-sight_settings_and_launch_options2")[0].innerText;
+    huy.textContent  = share;
 }

@@ -55,7 +55,7 @@ const encode = (crosshair) => {
     ];
     bytes.splice(9, 0, parseInt(`1010${crosshair.outline ? 1 : 0}${dec2bin(crosshair.color).padStart(3, '0')}`, 2));
     bytes.push(Math.min(63, crosshair.thickness * 10));
-    bytes.push(parseInt(`${crosshair.t ? 1 : 0}${crosshair.useAlpha ? 1 : 0}${crosshair.useWeaponValue ? 1 : 0}${crosshair.dot ? 1 : 0}${dec2bin(crosshair.style).padStart(3, '0')}0`, 2));
+    bytes.push(parseInt(`${crosshair.t ? 1 : 0}${crosshair.usealpha ? 1 : 0}${crosshair.useWeaponValue ? 1 : 0}${crosshair.dot ? 1 : 0}${dec2bin(crosshair.style).padStart(3, '0')}0`, 2));
     bytes.push(crosshair.size * 10);
     bytes = bytes.concat([0, 0, 0]);
     let checksum = dec2bin(bytes.reduce((a, v) => a + v)).padStart(3, '0');
@@ -123,7 +123,7 @@ function changeConfig(CONFIG) {
       i = 0;
       const crosshair = {
         alpha: 0,
-        useAlpha: false,
+        usealpha: false,
         useWeaponValue: false,
         color: 0,
         color_b: 0,
@@ -181,12 +181,13 @@ function changeConfig(CONFIG) {
         crosshair_t :"cl_crosshair_t"
     };
     let crosshair = changeConfig(CONFIG);
+    console.log(crosshair);
     return crosshair;
 
   }
 
   function shareCodePrint(crosshair){
-    let useAlpha = true;
+    let usealpha = true;
     let alpha = 255;
     let color = 1;
     let r = 0;
@@ -202,9 +203,9 @@ function changeConfig(CONFIG) {
     let t = false;
     let useWeaponValue = false;
     if (crosshair.usealpha === 1){
-        useAlpha = true;
+        usealpha = true;
     }else{
-        useAlpha = false;
+        usealpha = false;
     }
     if (isNaN(crosshair.alpha) === false){
         alpha = crosshair.alpha;
@@ -251,7 +252,7 @@ function changeConfig(CONFIG) {
     }else{
         t = false;
     }
-    return(encode({useAlpha, alpha, color, r, g, b, size, style, gap, thickness,
+    return(encode({usealpha, alpha, color, r, g, b, size, style, gap, thickness,
     dot, outline, outlineThickness, t, useWeaponValue}))
     // useWeaponValue
 }
@@ -261,8 +262,6 @@ export function parseCFGcode(){
     let crosshair = configCode();
     drowCrosshair(crosshair);
     let huy = document.getElementById("crosshairShareCode");
-    console.log(crosshair);
     huy.textContent  = shareCodePrint(crosshair);
-    console.log(crosshair);
 }
     
