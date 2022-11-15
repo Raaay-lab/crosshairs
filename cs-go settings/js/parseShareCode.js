@@ -23,6 +23,7 @@ const decode = () => {
     const DICTIONARY_LENGTH = BigInt(DICTIONARY.length);
     const SHARECODE_PATTERN = /CSGO(-?[\w]{5}){5}$/;
     let code = getText();
+    code.replace(/\s{2,}/g, '');
     if (code === undefined || !code.match(SHARECODE_PATTERN)) {
         return null;
     }
@@ -89,6 +90,7 @@ const decode = () => {
 
 export function parseShareCode(){
     let crosshair = decode();
+    console.log(crosshair);
     drowCrosshair(crosshair);
     console.log(crosshair);
 }

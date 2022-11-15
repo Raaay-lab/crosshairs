@@ -1,5 +1,4 @@
 function checkCrosshair(crosshair, ctx){
-
     if (crosshair.useAlpha === true) {
         ctx.globalAlpha = crosshair.alpha / 255;
     }
@@ -19,7 +18,6 @@ function checkCrosshair(crosshair, ctx){
     if (crosshair.outline_draw == 1 && crosshair.outline > 0 ) {
         let canvas_background = document.getElementById('canvas');
         canvas_background.style.backgroundColor = 'white';
-        // document.canvas.style.backgroundColor = "white";
     }else{
         let canvas_background = document.getElementById('canvas');
         canvas_background.style.backgroundColor = 'black';
@@ -29,48 +27,17 @@ function checkCrosshair(crosshair, ctx){
 
 function createDot(crosshair, center, thicknessX2, ctx, color) {
     if (crosshair.outline_draw == 1) {
-        if (crosshair.outline === 0.5) {
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 - 1,
-                center.y - thicknessX2 / 2 - 1,
-                thicknessX2 + 1,
-                thicknessX2 + 1);
-        }
-        if (crosshair.outline === 1) {
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 - 1,
-                center.y - thicknessX2 / 2 - 1,
-                thicknessX2 + 2,
-                thicknessX2 + 2);
-        }
-        if (crosshair.outline === 1.5) {
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 - 2,
-                center.y - thicknessX2 / 2 - 2,
-                thicknessX2 + 3,
-                thicknessX2 + 3);
-        }
-        if (crosshair.outline === 2) {
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 - 2,
-                center.y - thicknessX2 / 2 - 2,
-                thicknessX2 + 4,
-                thicknessX2 + 4);
-        }
-        if (crosshair.outline === 2.5) {
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 - 3,
-                center.y - thicknessX2 / 2 - 3,
-                thicknessX2 + 5,
-                thicknessX2 + 5);
-        }
-        if (crosshair.outline >= 3) {
-            crosshair.outline = 3;
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 - 3,
-                center.y - thicknessX2 / 2 - 3,
-                thicknessX2 + 6,
-                thicknessX2 + 6);
+
+        let outlineAttrs = [0.5, 1, 1.5, 2, 2.5, 3];
+        for (let i in outlineAttrs){
+            if (crosshair.outline === outlineAttrs[i]){
+                ctx.fillStyle = "black";
+                let tt = crosshair.outline;
+                ctx.fillRect(center.x - (thicknessX2 / 2) - Math.ceil(tt),
+                    center.y - (thicknessX2 / 2) - Math.ceil(tt),
+                    thicknessX2 + (outlineAttrs[i] * 2),
+                    thicknessX2 + (outlineAttrs[i] * 2));
+            }
         }
     }
     ctx.fillStyle = color.color[crosshair.color];
@@ -79,48 +46,16 @@ function createDot(crosshair, center, thicknessX2, ctx, color) {
 
 function createMarkRight(crosshair, center, thicknessX2, sizeX2, gap4, ctx, color) {
     if (crosshair.outline_draw == 1) {
-        if (crosshair.outline === 0.5) {
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 + thicknessX2 + gap4 - 1,
-                center.y - thicknessX2 / 2 - 1,
-                sizeX2 + 1,
-                thicknessX2 + 1);
-        }
-        if (crosshair.outline === 1) {
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 + thicknessX2 + gap4 - 1,
-                center.y - thicknessX2 / 2 - 1,
-                sizeX2 + 2,
-                thicknessX2 + 2);
-        }
-        if (crosshair.outline === 1.5) {
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 + thicknessX2 + gap4 - 2,
-                center.y - thicknessX2 / 2 - 2,
-                sizeX2 + 3,
-                thicknessX2 + 3);
-        }
-        if (crosshair.outline === 2) {
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 + thicknessX2 + gap4 - 2,
-                center.y - thicknessX2 / 2 - 2,
-                sizeX2 + 4,
-                thicknessX2 + 4);
-        }
-        if (crosshair.outline === 2.5) {
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 + thicknessX2 + gap4 - 3,
-                center.y - thicknessX2 / 2 - 3,
-                sizeX2 + 5,
-                thicknessX2 + 5);
-        }
-        if (crosshair.outline >= 3) {
-            crosshair.outline = 3;
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 + thicknessX2 + gap4 - 3,
-                center.y - thicknessX2 / 2 - 3,
-                sizeX2 + 6,
-                thicknessX2 + 6);
+        let outlineAttrs = [0.5, 1, 1.5, 2, 2.5, 3];
+        for (let i in outlineAttrs){
+            if (crosshair.outline === outlineAttrs[i]){
+                ctx.fillStyle = "black";
+                let tt = crosshair.outline;
+                ctx.fillRect(center.x - thicknessX2 / 2 + thicknessX2 + gap4 - Math.ceil(tt),
+                    center.y - thicknessX2 / 2 - Math.ceil(tt),
+                    sizeX2 + outlineAttrs[i] * 2,
+                    thicknessX2 + outlineAttrs[i] * 2);
+            }
         }
     }
     ctx.fillStyle = color.color[crosshair.color];
@@ -132,42 +67,16 @@ function createMarkRight(crosshair, center, thicknessX2, sizeX2, gap4, ctx, colo
 
 function createMarkBottom(crosshair, center, thicknessX2, sizeX2, gap4, ctx, color) {
     if (crosshair.outline_draw == 1) {
-        ctx.fillStyle = "black";
-        if (crosshair.outline === 0.5) {
-            ctx.fillRect(center.x - thicknessX2 / 2 - 1,
-                center.y - thicknessX2 / 2 + thicknessX2 + gap4 - 1,
-                thicknessX2 + 1,
-                sizeX2 + 1);
-        }
-        if (crosshair.outline === 1) {
-            ctx.fillRect(center.x - thicknessX2 / 2 - 1,
-                center.y - thicknessX2 / 2 + thicknessX2 + gap4 - 1,
-                thicknessX2 + 2,
-                sizeX2 + 2);
-        }
-        if (crosshair.outline === 1.5) {
-            ctx.fillRect(center.x - thicknessX2 / 2 - 2,
-                center.y - thicknessX2 / 2 + thicknessX2 + gap4 - 2,
-                thicknessX2 + 3,
-                sizeX2 + 3);
-        }
-        if (crosshair.outline === 2) {
-            ctx.fillRect(center.x - thicknessX2 / 2 - 2,
-                center.y - thicknessX2 / 2 + thicknessX2 + gap4 - 2,
-                thicknessX2 + 4,
-                sizeX2 + 4);
-        }
-        if (crosshair.outline === 2.5) {
-            ctx.fillRect(center.x - thicknessX2 / 2 - 3,
-                center.y - thicknessX2 / 2 + thicknessX2 + gap4 - 3,
-                thicknessX2 + 5,
-                sizeX2 + 5);
-        }
-        if (crosshair.outline === 3) {
-            ctx.fillRect(center.x - thicknessX2 / 2 - 3,
-                center.y - thicknessX2 / 2 + thicknessX2 + gap4 - 3,
-                thicknessX2 + 6,
-                sizeX2 + 6);
+        let outlineAttrs = [0.5, 1, 1.5, 2, 2.5, 3];
+        for (let i in outlineAttrs){
+            if (crosshair.outline === outlineAttrs[i]){
+                ctx.fillStyle = "black";
+                let tt = crosshair.outline;
+                    ctx.fillRect(center.x - thicknessX2 / 2 - Math.ceil(tt),
+                    center.y - thicknessX2 / 2 + thicknessX2 + gap4 - Math.ceil(tt),
+                    thicknessX2 + outlineAttrs[i] * 2,
+                    sizeX2 + outlineAttrs[i] * 2);
+            }
         }
     }
     ctx.fillStyle = color.color[crosshair.color];
@@ -179,47 +88,16 @@ function createMarkBottom(crosshair, center, thicknessX2, sizeX2, gap4, ctx, col
 
 function createMarkLeft(crosshair, center, thicknessX2, sizeX2, gap4, ctx, color) {
     if (crosshair.outline_draw == 1) {
-        if (crosshair.outline === 0.5) {
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 - thicknessX2 - gap4 - sizeX2 + thicknessX2 - 1,
-                center.y - thicknessX2 / 2 - 1,
-                sizeX2 + 1,
-                thicknessX2 + 1);
-        }
-        if (crosshair.outline === 1) {
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 - thicknessX2 - gap4 - sizeX2 + thicknessX2 - 1,
-                center.y - thicknessX2 / 2 - 1,
-                sizeX2 + 2,
-                thicknessX2 + 2);
-        }
-        if (crosshair.outline === 1.5) {
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 - thicknessX2 - gap4 - sizeX2 + thicknessX2 - 2,
-                center.y - thicknessX2 / 2 - 2,
-                sizeX2 + 3,
-                thicknessX2 + 3);
-        }
-        if (crosshair.outline === 2) {
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 - thicknessX2 - gap4 - sizeX2 + thicknessX2 - 2,
-                center.y - thicknessX2 / 2 - 2,
-                sizeX2 + 4,
-                thicknessX2 + 4);
-        }
-        if (crosshair.outline === 2.5) {
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 - thicknessX2 - gap4 - sizeX2 + thicknessX2 - 3,
-                center.y - thicknessX2 / 2 - 3,
-                sizeX2 + 5,
-                thicknessX2 + 5);
-        }
-        if (crosshair.outline === 3) {
-            ctx.fillStyle = "black";
-            ctx.fillRect(center.x - thicknessX2 / 2 - thicknessX2 - gap4 - sizeX2 + thicknessX2 - 3,
-                center.y - thicknessX2 / 2 - 3,
-                sizeX2 + 6,
-                thicknessX2 + 6);
+        let outlineAttrs = [0.5, 1, 1.5, 2, 2.5, 3];
+        for (let i in outlineAttrs){
+            if (crosshair.outline === outlineAttrs[i]){
+                ctx.fillStyle = "black";
+                let tt = crosshair.outline;
+                ctx.fillRect(center.x - thicknessX2 / 2 - thicknessX2 - gap4 - sizeX2 + thicknessX2 -  Math.ceil(tt),
+                    center.y - thicknessX2 / 2 - Math.ceil(tt),
+                    sizeX2 + outlineAttrs[i] * 2,
+                    thicknessX2 + outlineAttrs[i] * 2);
+            }
         }
     }
     ctx.fillStyle = color.color[crosshair.color];
@@ -231,42 +109,16 @@ function createMarkLeft(crosshair, center, thicknessX2, sizeX2, gap4, ctx, color
 
 function createMarkTop(crosshair, center, thicknessX2, sizeX2, gap4, ctx, color) {
     if (crosshair.outline_draw == 1) {
-        ctx.fillStyle = "black";
-        if (crosshair.outline === 0.5) {
-            ctx.fillRect(center.x - thicknessX2 / 2 - 1,
-                center.y + thicknessX2 / 2 - thicknessX2 - gap4 - sizeX2 - 1,
-                thicknessX2 + 1,
-                sizeX2 + 1);
-        }
-        if (crosshair.outline === 1) {
-            ctx.fillRect(center.x - thicknessX2 / 2 - 1,
-                center.y + thicknessX2 / 2 - thicknessX2 - gap4 - sizeX2 - 1,
-                thicknessX2 + 2,
-                sizeX2 + 2);
-        }
-        if (crosshair.outline === 1.5) {
-            ctx.fillRect(center.x - thicknessX2 / 2 - 2,
-                center.y + thicknessX2 / 2 - thicknessX2 - gap4 - sizeX2 - 2,
-                thicknessX2 + 3,
-                sizeX2 + 3);
-        }
-        if (crosshair.outline === 2) {
-            ctx.fillRect(center.x - thicknessX2 / 2 - 2,
-                center.y + thicknessX2 / 2 - thicknessX2 - gap4 - sizeX2 - 2,
-                thicknessX2 + 4,
-                sizeX2 + 4);
-        }
-        if (crosshair.outline === 2.5) {
-            ctx.fillRect(center.x - thicknessX2 / 2 - 3,
-                center.y + thicknessX2 / 2 - thicknessX2 - gap4 - sizeX2 - 3,
-                thicknessX2 + 5,
-                sizeX2 + 5);
-        }
-        if (crosshair.outline === 3) {
-            ctx.fillRect(center.x - thicknessX2 / 2 - 3,
-                center.y + thicknessX2 / 2 - thicknessX2 - gap4 - sizeX2 - 3,
-                thicknessX2 + 6,
-                sizeX2 + 6);
+        let outlineAttrs = [0.5, 1, 1.5, 2, 2.5, 3];
+        for (let i in outlineAttrs){
+            if (crosshair.outline === outlineAttrs[i]){
+                ctx.fillStyle = "black";
+                let tt = crosshair.outline;
+                ctx.fillRect(center.x - thicknessX2 / 2 - Math.ceil(tt),
+                    center.y + thicknessX2 / 2 - thicknessX2 - gap4 - sizeX2 - Math.ceil(tt),
+                    thicknessX2 + outlineAttrs[i] * 2,
+                    sizeX2 + outlineAttrs[i] * 2);
+            }
         }
     }
     ctx.fillStyle = color.color[crosshair.color];
@@ -306,12 +158,14 @@ function checkColor(crosshair){
 export default function drowCrosshair(crosshair){
     let canvas = document.getElementById("canvas");
     let ctx = canvas.getContext("2d");
+    ctx.translate(0.5, 0.5);
     ctx.clearRect(0, 0, canvas.width, canvas.height);    
     let center = {
         x: canvas.height / 2,
         y: canvas.width / 2
     };
 
+    console.log(crosshair);
     crosshair = checkCrosshair(crosshair, ctx);
 
     let thicknessX2 = crosshair.thickness * 2;

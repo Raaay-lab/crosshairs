@@ -261,6 +261,7 @@ export function parseCFGcode(){
     let crosshair = configCode();
     drowCrosshair(crosshair);
     let huy = document.getElementById("crosshairShareCode");
+    console.log(crosshair);
     huy.textContent  = shareCodePrint(crosshair);
     console.log(crosshair);
 }
