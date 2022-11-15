@@ -16,7 +16,7 @@ function checkCrosshair(crosshair, ctx){
     if (crosshair.thickness <= 0) {
         crosshair.thickness = 0.5;
     };
-    if (crosshair.outline_draw === true && crosshair.outline > 0 ) {
+    if (crosshair.outline_draw == 1 && crosshair.outline > 0 ) {
         let canvas_background = document.getElementById('canvas');
         canvas_background.style.backgroundColor = 'white';
         // document.canvas.style.backgroundColor = "white";
@@ -28,7 +28,7 @@ function checkCrosshair(crosshair, ctx){
 }
 
 function createDot(crosshair, center, thicknessX2, ctx, color) {
-    if (crosshair.outline_draw === true) {
+    if (crosshair.outline_draw == 1) {
         if (crosshair.outline === 0.5) {
             ctx.fillStyle = "black";
             ctx.fillRect(center.x - thicknessX2 / 2 - 1,
@@ -64,7 +64,8 @@ function createDot(crosshair, center, thicknessX2, ctx, color) {
                 thicknessX2 + 5,
                 thicknessX2 + 5);
         }
-        if (crosshair.outline === 3) {
+        if (crosshair.outline >= 3) {
+            crosshair.outline = 3;
             ctx.fillStyle = "black";
             ctx.fillRect(center.x - thicknessX2 / 2 - 3,
                 center.y - thicknessX2 / 2 - 3,
@@ -77,7 +78,7 @@ function createDot(crosshair, center, thicknessX2, ctx, color) {
 };
 
 function createMarkRight(crosshair, center, thicknessX2, sizeX2, gap4, ctx, color) {
-    if (crosshair.outline_draw === true) {
+    if (crosshair.outline_draw == 1) {
         if (crosshair.outline === 0.5) {
             ctx.fillStyle = "black";
             ctx.fillRect(center.x - thicknessX2 / 2 + thicknessX2 + gap4 - 1,
@@ -113,7 +114,8 @@ function createMarkRight(crosshair, center, thicknessX2, sizeX2, gap4, ctx, colo
                 sizeX2 + 5,
                 thicknessX2 + 5);
         }
-        if (crosshair.outline === 3) {
+        if (crosshair.outline >= 3) {
+            crosshair.outline = 3;
             ctx.fillStyle = "black";
             ctx.fillRect(center.x - thicknessX2 / 2 + thicknessX2 + gap4 - 3,
                 center.y - thicknessX2 / 2 - 3,
@@ -129,7 +131,7 @@ function createMarkRight(crosshair, center, thicknessX2, sizeX2, gap4, ctx, colo
 }
 
 function createMarkBottom(crosshair, center, thicknessX2, sizeX2, gap4, ctx, color) {
-    if (crosshair.outline_draw === true) {
+    if (crosshair.outline_draw == 1) {
         ctx.fillStyle = "black";
         if (crosshair.outline === 0.5) {
             ctx.fillRect(center.x - thicknessX2 / 2 - 1,
@@ -176,7 +178,7 @@ function createMarkBottom(crosshair, center, thicknessX2, sizeX2, gap4, ctx, col
 }
 
 function createMarkLeft(crosshair, center, thicknessX2, sizeX2, gap4, ctx, color) {
-    if (crosshair.outline_draw === true) {
+    if (crosshair.outline_draw == 1) {
         if (crosshair.outline === 0.5) {
             ctx.fillStyle = "black";
             ctx.fillRect(center.x - thicknessX2 / 2 - thicknessX2 - gap4 - sizeX2 + thicknessX2 - 1,
@@ -228,7 +230,7 @@ function createMarkLeft(crosshair, center, thicknessX2, sizeX2, gap4, ctx, color
 }
 
 function createMarkTop(crosshair, center, thicknessX2, sizeX2, gap4, ctx, color) {
-    if (crosshair.outline_draw === true) {
+    if (crosshair.outline_draw == 1) {
         ctx.fillStyle = "black";
         if (crosshair.outline === 0.5) {
             ctx.fillRect(center.x - thicknessX2 / 2 - 1,
@@ -310,21 +312,21 @@ export default function drowCrosshair(crosshair){
         y: canvas.width / 2
     };
 
+    crosshair = checkCrosshair(crosshair, ctx);
 
     let thicknessX2 = crosshair.thickness * 2;
     let gap4 = crosshair.gap + 4;
     let sizeX2 = crosshair.size * 2;
 
-    crosshair = checkCrosshair(crosshair, ctx);
     let color = checkColor(crosshair);
     createMarkRight(crosshair, center, thicknessX2, sizeX2, gap4 , ctx, color);
-    createMarkBottom(crosshair, center, thicknessX2, sizeX2, gap4, ctx, color);
     createMarkLeft(crosshair, center, thicknessX2, sizeX2, gap4, ctx, color);
+    createMarkBottom(crosshair, center, thicknessX2, sizeX2, gap4, ctx, color);
     if (crosshair.crosshair_t !== 1){
         createMarkTop(crosshair, center, thicknessX2, sizeX2, gap4, ctx, color);
     }
     
-    if (crosshair.dot === 1) {
+    if (crosshair.dot == 1) {
         createDot(crosshair, center, thicknessX2, ctx, color);
     }
     ctx.restore();

@@ -63,11 +63,8 @@ const encode = (crosshair) => {
     bytes.unshift(parseInt(checksum, 2));
     const hex = bytesToHex(bytes);
 
-    console.log(typeof(hex))
-    console.log(Number.MAX_SAFE_INTEGER)
     let hex2 = h2d(hex);
     let total = BigInt(hex2);
-    console.log(total);
     let c = '';
     let rem = 0 + 'n';
     Array.from({ length: 25 }).forEach(() => {
@@ -180,7 +177,8 @@ function changeConfig(CONFIG) {
         thickness : "cl_crosshairthickness",
         fgap : "cl_fixedcrosshairgap",
         outline : "cl_crosshair_outlinethickness",
-        outline_draw : "cl_crosshair_drawoutline"
+        outline_draw : "cl_crosshair_drawoutline",
+        crosshair_t :"cl_crosshair_t"
     };
     let crosshair = changeConfig(CONFIG);
     return crosshair;
@@ -264,5 +262,6 @@ export function parseCFGcode(){
     drowCrosshair(crosshair);
     let huy = document.getElementById("crosshairShareCode");
     huy.textContent  = shareCodePrint(crosshair);
+    console.log(crosshair);
 }
     

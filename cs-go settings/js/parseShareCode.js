@@ -90,4 +90,5 @@ const decode = () => {
 export function parseShareCode(){
     let crosshair = decode();
     drowCrosshair(crosshair);
+    console.log(crosshair);
 }

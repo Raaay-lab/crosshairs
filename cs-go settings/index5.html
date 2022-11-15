@@ -5,30 +5,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- <script src="js/parseConfigCode.js"></script>
-    <script src="js/parseShareCode.js"></script> -->
-    <!-- <script type="module" src="js/BigInteger.min.js"></script> -->
     <title>Прицел для Тоши</title>
 </head>
 <body>
     <div class="files-page-sight_settings_and_launch_options">
-        <noindex>cl_crosshairalpha 200; cl_crosshaircolor 1; cl_crosshairdot 1; cl_crosshairgap -2; cl_crosshairsize 1; cl_crosshairstyle 5; cl_crosshairusealpha 1; cl_crosshairthickness 1; cl_crosshair_sniper_width 1; cl_crosshair_outlinethickness 1; cl_crosshair_drawoutline 1; </noindex>
+        <!-- <noindex>cl_crosshairalpha 255; cl_crosshaircolor 2; cl_crosshairdot 0; cl_crosshairgap -2; cl_crosshairsize 2.5; cl_crosshairstyle 4; cl_crosshairusealpha 1; cl_crosshairthickness 1.1; cl_crosshair_sniper_width 1; cl_crosshair_outlinethickness 1; cl_crosshair_drawoutline 0;</noindex> -->
     </div>
     <div class="files-page-sight_settings_and_launch_options2">
-        <noindex>CSGO-at3tC-w6puH-VM7wr-c3wSu-5L5mA</noindex>
+        <!-- <noindex>CSGO-CVSiS-H5249-BMc7Y-79HEq-J6sKG</noindex> -->
     </div>
     <div class="canvas">
-        <canvas id="canvas" width="100" height="100"></canvas>
     </div>
     <script type="module"> 
     import { parseCFGcode } from '../js/parseConfigCode.js';
     import { parseShareCode } from '../js/parseShareCode.js';
         let cfg = document.getElementsByClassName("files-page-sight_settings_and_launch_options")[0].innerText;
         let share = document.getElementsByClassName("files-page-sight_settings_and_launch_options2")[0].innerText;
-        if (cfg !== ""){
+        let cc = document.querySelector("div.canvas");
+        if(cfg !== "") {
+            cc.innerHTML = "<canvas id=\"canvas\" width=\"99\" height=\"99\"> </canvas>";
             parseCFGcode()
-        }else if (share !== ""){
+        }
+        else {
+            cc.innerHTML = "<canvas id=\"canvas\" width=\"99\" height=\"99\"> </canvas>";
             parseShareCode()
         }
     </script>
